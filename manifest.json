@@ -1,6 +1,7 @@
 {
     "name": "Analysis",
     "version": "0.0.0",
+    "manifest_version": 3,
     "description": "Classify images right in your browser using TensorFlow.js and mobilenet.",
     "permissions": [
       "contextMenus",
@@ -11,19 +12,21 @@
       "<all_urls>"
     ],
     "action": {
-        "default_popup": "main.html"
+        "default_popup": "empty.html"
       },
     "background": {
       "service_worker": "script.js"
     },
-    "content_scripts": [
-      {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["tf.min.js", "script.js"],
-        "all_frames": true
-      }
-    ],
-    "manifest_version": 3,
-    "content_security_policy": {
-        "extension-page": "script-src 'self' chrome-extension://lemnlmkdjipiekkekdkdhkedfgoalfec/tf.min.js; object-src 'self'"}
+    "content_security_policy": {  "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "sandbox allow-scripts; script-src 'self'"
+  
+  },
+
+  "sandbox" : {
+    "pages": [
+      "main.html"
+    ]
+  }
+
+      
   }
